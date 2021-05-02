@@ -14,7 +14,16 @@ const sessionStore = new MongoDBStore(
     {
         uri: process.env.MONGODB_CONNECTION_STRING,
         collection: 'allSessions'
-    });
+});
+
+// ejs template engine
+const ejs = require('ejs');
+const expressLayouts = require('express-ejs-layouts');
+
+app.use(expressLayouts);
+app.use(express.static('public'));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '/src/views'));
 
 // session ve flash messages
 app.use(session({
@@ -49,15 +58,6 @@ app.use(passport.session());
 const authRouter = require('./src/routes/auth_router');
 const managementRouter = require('./src/routes/management_router');
 
-// ejs template engine
-const ejs = require('ejs');
-const expressLayouts = require('express-ejs-layouts');
-
-app.use(expressLayouts);
-app.use(express.static('public'));
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '/src/views'));
-
 // formdan gelen bilgilerin okunabilmesi için middleware:
 app.use(express.urlencoded({ extended: true }));
 
@@ -69,13 +69,13 @@ app.get('/', (req, res) => {
         req.session.counter = 1;
     }
     res.send("<h1> BLOG SAYFASI </h1>"
-    + "<h3> Burada ürünü tanıtan 3-4 sayfalık basit blog sayfası olacak </h3>"
-    + "<h3> /login uzantısına gidip yönetim paneline eriş </h3>");
+        + "<h3> Burada ürünü tanıtan 3-4 sayfalık basit blog sayfası olacak </h3>"
+        + "<h3> /login uzantısına gidip yönetim paneline eriş </h3>");
 });
 
 app.use('/', authRouter),
-app.use('/management', managementRouter),
+    app.use('/management', managementRouter),
 
-app.listen(process.env.PORT, () => {
-    console.log(`server is running on port ${process.env.PORT}`);
-});
+    app.listen(process.env.PORT, () => {
+        console.log(`server is running on port ${process.env.PORT}`);
+    });

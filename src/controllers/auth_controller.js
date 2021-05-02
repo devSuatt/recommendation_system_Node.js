@@ -75,6 +75,14 @@ const forgotPassword = (req, res, next) => {
     res.render('forgot_password', { layout: './layout/auth_layout.ejs' });
 };
 
+const logout = (req, res, next) => {
+    req.logout();   // db'deki session kısmındaki passport alanındaki id silinir.
+    req.session.destroy((error) => {    // session'ı da silmeliyiz
+        res.clearCookie('connect.sid'); // mevcut cookie'yi temizle
+        res.redirect('/login');
+    });
+};
+
 module.exports = {
     login,
     showLoginForm,
@@ -82,4 +90,5 @@ module.exports = {
     showRegisterForm,
     forgotPassword,
     showForgotPasswordForm,
+    logout
 }
