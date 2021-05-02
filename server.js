@@ -52,6 +52,7 @@ const managementRouter = require('./src/routes/management_router');
 // ejs template engine
 const ejs = require('ejs');
 const expressLayouts = require('express-ejs-layouts');
+
 app.use(expressLayouts);
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
