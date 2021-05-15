@@ -6,6 +6,8 @@ const path = require('path');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
+const authMiddleware = require('./src/middlewares/auth_middleware');
+const upload = require('express-fileupload');
 
 // db bağlantısı
 require('./src/config/database');
@@ -24,6 +26,8 @@ app.use(expressLayouts);
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/src/views'));
+
+app.use(upload());
 
 // session ve flash messages
 app.use(session({
@@ -57,6 +61,7 @@ app.use(passport.session());
 // import routers
 const authRouter = require('./src/routes/auth_router');
 const managementRouter = require('./src/routes/management_router');
+const fileUpload = require('express-fileupload');
 
 // formdan gelen bilgilerin okunabilmesi için middleware:
 app.use(express.urlencoded({ extended: true }));
@@ -74,8 +79,28 @@ app.get('/', (req, res) => {
 });
 
 app.use('/', authRouter),
-    app.use('/management', managementRouter),
+app.use('/management', managementRouter),
 
-    app.listen(process.env.PORT, () => {
-        console.log(`server is running on port ${process.env.PORT}`);
-    });
+app.get('/upload', authMiddleware.notLoggedIn, (req, res) => {
+    res.render('upload_file', { layout: './layout/management_layout.ejs' });
+});
+
+app.post('/upload', (req, res) => {
+    if (req.files) {
+        var file = req.files.file;
+        var fileName = file.name;
+        console.log(fileName);
+
+        file.mv('./uploads/'+fileName, (err) => {
+            if (err) console.log("File has not been uploaded");
+            else console.log("File uploaded");
+        })
+        res.redirect('/management');
+    } else {
+        res.redirect('/upload');
+    }
+});
+
+app.listen(process.env.PORT, () => {
+    console.log(`server is running on port ${process.env.PORT}`);
+});
