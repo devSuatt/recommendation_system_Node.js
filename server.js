@@ -8,6 +8,13 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const authMiddleware = require('./src/middlewares/auth_middleware');
 const upload = require('express-fileupload');
+const AWS = require('aws-sdk');
+const uuid = require('uuid').v4();
+
+const S3 = new AWS.S3({
+    accessKeyId: process.env.AWS_ID,
+    secretAccessKey: process.env.AWS_SECRET,
+});
 
 // db bağlantısı
 require('./src/config/database');
@@ -16,7 +23,7 @@ const sessionStore = new MongoDBStore(
     {
         uri: process.env.MONGODB_CONNECTION_STRING,
         collection: 'allSessions'
-});
+    });
 
 // ejs template engine
 const ejs = require('ejs');
@@ -79,22 +86,38 @@ app.get('/', (req, res) => {
 });
 
 app.use('/', authRouter),
-app.use('/management', managementRouter),
+    app.use('/management', managementRouter),
 
-app.get('/upload', authMiddleware.notLoggedIn, (req, res) => {
-    res.render('upload_file', { layout: './layout/management_layout.ejs' });
-});
+    app.get('/upload', authMiddleware.notLoggedIn, (req, res) => {
+        res.render('upload_file', { layout: './layout/management_layout.ejs' });
+    });
 
 app.post('/upload', (req, res) => {
     if (req.files) {
         var file = req.files.file;
-        var fileName = file.name;
-        console.log(fileName);
+        let fileName = file.name.split('.');
+        const fileType = fileName[fileName.length - 1];
+        console.log("FileType: " + fileType);
+        console.log("Buffer: " + file.data);
 
-        file.mv('./uploads/'+fileName, (err) => {
+        file.mv('./uploads/' + fileName, (err) => {
             if (err) console.log("File has not been uploaded");
             else console.log("File uploaded");
-        })
+        });
+
+        const params = {
+            Bucket: process.env.AWS_BUCKET_NAME,   
+            Key: `${uuid}.${fileType}`,       // for example: unique_id.csv
+            Body: file.data,
+        }
+
+        S3.upload(params, (error, data) => {
+            if (error) {
+                res.status(500).send(error);
+            }
+            console.log(data);
+        });
+
         res.redirect('/management');
     } else {
         res.redirect('/upload');

@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.16.0",
+    "aws-sdk": "^2.907.0",
     "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^2.4.1",
     "dotenv": "^8.2.0",
@@ -22,6 +24,7 @@
     "express-validator": "^6.10.1",
     "mongoose": "^5.12.6",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "uuid": "^8.3.2"
   }
 }
