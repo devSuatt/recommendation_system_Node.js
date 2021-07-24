@@ -6,15 +6,19 @@ const path = require('path');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
-const authMiddleware = require('./src/middlewares/auth_middleware');
 const upload = require('express-fileupload');
 const AWS = require('aws-sdk');
-const uuid = require('uuid').v4();
+app.use(express.json());
 
-const S3 = new AWS.S3({
+AWS.config.update({
     accessKeyId: process.env.AWS_ID,
     secretAccessKey: process.env.AWS_SECRET,
+    region: process.env.AWS_REGION,
 });
+
+var personalize = new AWS.Personalize({ apiVersion: '2018-05-22' });
+
+let schemaName = "mySchema2";
 
 // db bağlantısı
 require('./src/config/database');
@@ -68,6 +72,7 @@ app.use(passport.session());
 // import routers
 const authRouter = require('./src/routes/auth_router');
 const managementRouter = require('./src/routes/management_router');
+const uploadRouter = require('./src/routes/upload_router');
 const fileUpload = require('express-fileupload');
 
 // formdan gelen bilgilerin okunabilmesi için middleware:
@@ -80,50 +85,13 @@ app.get('/', (req, res) => {
     } else {                    // yoksa oluştur, 1'den başlat.
         req.session.counter = 1;
     }
-    res.send("<h1> BLOG SAYFASI </h1>"
-        + "<h3> Burada ürünü tanıtan 3-4 sayfalık basit blog sayfası olacak </h3>"
-        + "<h3> /login uzantısına gidip yönetim paneline eriş </h3>");
+    res.render('home_page', {layout: false});
 });
 
 app.use('/', authRouter),
     app.use('/management', managementRouter),
+    app.use('/upload', uploadRouter),
 
-    app.get('/upload', authMiddleware.notLoggedIn, (req, res) => {
-        res.render('upload_file', { layout: './layout/management_layout.ejs' });
+    app.listen(process.env.PORT, () => {
+        console.log(`server is running on port ${process.env.PORT}`);
     });
-
-app.post('/upload', (req, res) => {
-    if (req.files) {
-        var file = req.files.file;
-        let fileName = file.name.split('.');
-        const fileType = fileName[fileName.length - 1];
-        console.log("FileType: " + fileType);
-        console.log("Buffer: " + file.data);
-
-        file.mv('./uploads/' + fileName, (err) => {
-            if (err) console.log("File has not been uploaded");
-            else console.log("File uploaded");
-        });
-
-        const params = {
-            Bucket: process.env.AWS_BUCKET_NAME,   
-            Key: `${uuid}.${fileType}`,       // for example: unique_id.csv
-            Body: file.data,
-        }
-
-        S3.upload(params, (error, data) => {
-            if (error) {
-                res.status(500).send(error);
-            }
-            console.log(data);
-        });
-
-        res.redirect('/management');
-    } else {
-        res.redirect('/upload');
-    }
-});
-
-app.listen(process.env.PORT, () => {
-    console.log(`server is running on port ${process.env.PORT}`);
-});

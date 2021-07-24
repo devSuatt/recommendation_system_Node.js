@@ -12,13 +12,15 @@
     <title>Recommendation System</title>
 
     <!-- Custom fonts for this template-->
-    <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../admin/css/breadcrumb.css" rel="stylesheet">
+    <link href="../admin/css/modal.css" rel="stylesheet">
 
 </head>
 
@@ -31,11 +33,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="management">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../management">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-file-alt"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">RECO TECH</div>
+                <div class="sidebar-brand-text mx-3">REC-ENGINE</div>
             </a>
 
             <!-- Divider -->
@@ -43,7 +45,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="management">
+                <a class="nav-link" href="../management">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span style="font-size: medium">Dashboard</span></a>
             </li>
@@ -52,18 +54,24 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading" style="font-size: medium">
-                Interface
+            <div class="sidebar-heading" style="font-size: smaller">
+                PROCESSES
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="upload">
+                <a class="nav-link" href="../upload/datasetGroup">
+                    <i class="fas fa-file-alt"></i>
+                    <span style="font-size: medium"> Create Recommendation </span></a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="../upload/getResults">
                     <i class="fas fa-fw fa-table"></i>
-                    <span style="font-size: medium">Upload File</span></a>
+                    <span style="font-size: medium"> Get Recommendations </span></a>
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <!-- li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -76,50 +84,22 @@
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
                 </div>
-            </li>
+            </li -->
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading" style="font-size: medium">
-                Addons
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-                    aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span style="font-size: medium">Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <!-- li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span style="font-size: medium">Charts</span></a>
-            </li>
+            </li -->
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            <!-- li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span style="font-size: medium">Tables</span></a>
-            </li>
+            </li -->
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -254,7 +234,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                                        <img class="rounded-circle" src="../admin/img/undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -265,7 +245,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                                        <img class="rounded-circle" src="../admin/img/undraw_profile_2.svg" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -276,7 +256,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                                        <img class="rounded-circle" src="../admin/img/undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -308,7 +288,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="../admin/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -339,7 +319,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div style="background-color: rgb(255, 255, 255);" class="container-fluid">
 
                     <%- body %> 
 
@@ -353,7 +333,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; REC-ENGINE 2021 </span>
                     </div>
                 </div>
             </footer>
@@ -390,15 +370,29 @@
         </div>
     </div>
 
+    <div id="smallModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Please wait...</h5>
+                </div>
+                <div class="modal-body">
+                    <img style="width: 30rem; height: 24rem;" src="../admin/img/loading.gif" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
-    <script src="admin/vendor/jquery/jquery.min.js"></script>
-    <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="../admin/vendor/jquery/jquery.min.js"></script>
+    <script src="../admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="admin/js/sb-admin-2.min.js"></script>
+    <script src="../admin/js/sb-admin-2.min.js"></script>
 
 </body>
 

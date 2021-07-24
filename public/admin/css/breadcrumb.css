@@ -1,0 +1,95 @@
+
+.breadcrumb>li+li:before {
+    content: "" !important
+}
+
+.breadcrumb {
+    padding: 10px;
+    font-size: 12px;
+    color: #aaa !important;
+    letter-spacing: 2px;
+    border-radius: 5px !important
+}
+
+.alt {
+    margin-top: 12px;
+}
+
+.first ol {
+    border-top-right-radius: 200px !important;
+    border-bottom-right-radius: 200px !important
+}
+
+.first-1 {
+    background-color: white !important
+}
+
+a-bc {
+    text-decoration: none !important;
+    color: rgb(199, 199, 199) !important
+}
+
+a:focus,
+a:active {
+    outline: none !important;
+    box-shadow: none !important
+}
+
+img {
+    vertical-align: bottom;
+    opacity: 0.5
+}
+
+.first span {
+    color: black
+}
+
+.first a:hover {
+    color: black !important
+}
+
+.active-1 span:hover {
+    color: white !important
+}
+
+.active-1 {
+    font-size: 12px !important;
+    padding-bottom: 7px !important;
+    padding-top: 10px !important;
+    padding-right: 21px !important;
+    padding-left: 21px !important;
+    border-radius: 200px !important;
+    background-color: rgb(187, 214, 255) !important
+}
+
+@media (max-width: 1067px) {
+    .breadcrumb {
+        font-size: 10px
+    }
+
+    .breadcrumb-item+.breadcrumb-item {
+        padding-left: 0;
+    }
+
+    img {
+        width: 11px;
+        height: 11px;
+        vertical-align: middle
+    }
+
+    .active-1 {
+        font-size: 10px !important;
+        padding-right: 5px !important;
+        padding-left: 5px !important;
+        background-color: rgb(187, 214, 255) !important;
+        width: 100% ! important
+    }
+
+    .breadcrumb {
+        letter-spacing: 1px !important
+    }
+
+    .breadcrumb>* div {
+        max-width: 60px
+    }
+}

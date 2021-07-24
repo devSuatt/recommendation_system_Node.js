@@ -1,0 +1,14 @@
+/* theme-color */
+.header-area, .btn, .item-icon i {
+    border-color: #f39c12;
+    
+}
+
+
+.main-menu li.active a, a:hover, .main-menu li a:hover, .footer-menu li a:hover, .btn:hover, .item-icon i:hover, .video-img-thumbnail a:hover, .blog-tags a:hover, .blog-btn .read-more-btn:hover, .author-content a:hover, .address-line p a:hover {
+    color: #f39c12;
+}
+
+.btn, .owl-carousel .owl-dots button.active, .icon-box-content, .item-icon i, .theme-bg, .project-inner::after, .social-links li:hover, #scrollUp {
+    background-color: #f39c12;
+}

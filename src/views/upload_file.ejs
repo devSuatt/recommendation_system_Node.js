@@ -1,8 +1,67 @@
-<h1> UPLOAD FILE </h1>
+<br>
+<h1 class="text-center"> UPLOAD FILE </h1>
 
-<div style="background-color: rgb(225, 233, 255); width: 29rem; height: 9rem; padding: 3rem 3rem; border: 1px solid dodgerblue;">
-    <form method="POST" action="/upload" enctype="multipart/form-data">
-        <input type="file" name="file" id="file">
-        <input class="btn btn-success" type="submit" value="Upload">
-    </form>
+<div class="container mt-2" style="margin-left: 4rem;">
+    <div class="column">
+
+        <div class="col-md-9" style="margin: 1rem">
+            <div class="card">
+                <div class="card-header text-center" style="font-size: x-large;"> USERS </div>
+                <div class="card-body">
+                    <br>
+                    <h5 id="question" class="card-title"> Upload your users.csv file </h5>
+                </div>
+                <div class="card-footer">
+                    <form method="POST" action="/upload/users" enctype="multipart/form-data">
+                        <input type="file" name="file" id="file">
+                        <input class="btn btn-success" type="submit" value="Upload">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col-md-9" style="margin: 1rem">
+            <div class="card">
+                <div class="card-header text-center" style="font-size: x-large;"> ITEMS </div>
+                <div class="card-body">
+                    <br>
+                    <h5 id="question" class="card-title"> Upload your items.csv file </h5>
+
+                </div>
+                <div class="card-footer">
+                    <form method="POST" action="/upload/items" enctype="multipart/form-data">
+                        <input type="file" name="file" id="file">
+                        <input class="btn btn-success" type="submit" value="Upload">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col-md-9" style="margin: 1rem">
+            <div class="card">
+                <div class="card-header text-center" style="font-size: x-large;"> INTERACTIONS </div>
+                <div class="card-body">
+                    <br>
+                    <h5 id="question" class="card-title"> Upload your interactions.csv file </h5>
+                </div>
+                <div class="card-footer">
+                    <form method="POST" action="/upload/interactions" enctype="multipart/form-data">
+                        <input type="file" name="file" id="file">
+                        <input class="btn btn-success" type="submit" value="Upload">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-sm" style="padding-bottom: 1rem; padding-top: 1rem;">
+            <form action="/upload/getRecommendation" method="post" enctype="multipart/form-data" id="recoForm">
+                <input type="submit" value="GET RECOMMENDATIONS" class="btn btn-primary">
+            </form>
+        </div>
+
+    </div>
 </div>
+
+
+
+<script src="admin/js/upload.js"></script>

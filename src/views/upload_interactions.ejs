@@ -1,0 +1,37 @@
+
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-auto col-md-10 ">
+            <nav aria-label="breadcrumb " class="first d-md-flex">
+                <ol class="breadcrumb indigo lighten-6 first-1 mb-5 ">
+                    <li class="breadcrumb-item alt font-weight-bold"><a class="black-text text-uppercase a-bc" href="datasetGroup"><span>Dataset Group</span></a><img class="ml-md-3" src="/admin/img/double-right.png" width="20" height="20"> </li>
+                    <li class="breadcrumb-item alt font-weight-bold"><a class="black-text text-uppercase a-bc" href="usersFile"><span>Users File</span></a><img class="ml-md-3" src="/admin/img/double-right.png" width="20" height="20"></li>
+                    <li class="breadcrumb-item alt font-weight-bold"><a class="black-text text-uppercase a-bc" href="itemsFile"><span>Items File</span></a><img class="ml-md-3" src="/admin/img/double-right.png" width="20" height="20"> </li>
+                    <li class="breadcrumb-item alt font-weight-bold"><a class="black-text text-uppercase active-1 a-bc" href="interactionsFile"><span>Interactions File</span></a><img class="ml-md-3" src="/admin/img/double-right.png" width="20" height="20"> </li>
+                    <li class="breadcrumb-item alt font-weight-bold"><a class="black-text text-uppercase a-bc" href="solution"><span>Solution</span></a><img class="ml-md-3" src="/admin/img/double-right.png" width="20" height="20"> </li>
+                    <li class="breadcrumb-item alt font-weight-bold"><a class="black-text text-uppercase a-bc" href="campaign"><span>Campaign</span></a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<h1 class="text-center"> UPLOAD INTERACTIONS FILE </h1>
+
+<div class="col-md-9" style="margin: 1rem">
+    <div class="card">
+        <div class="card-header text-center" style="font-size: x-large;"> INTERACTIONS </div>
+        <div class="card-body">
+            <br>
+            <h5 id="question" class="card-title"> Upload your interactions.csv file </h5>
+        </div>
+        <div class="card-footer">
+            <form method="POST" action="/upload/interactions" enctype="multipart/form-data">
+                <input type="file" name="file" id="file">
+                <input class="btn btn-success" type="submit" value="Upload" data-toggle="modal" data-target="#smallModal">
+            </form>
+        </div>
+    </div>
+</div>
+
+<br> <br> <br> <br> <br>

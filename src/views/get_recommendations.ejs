@@ -1,0 +1,59 @@
+<h1> GET RECOMMENDATIONS </h1>
+
+<br> <br>
+
+<div class="col-lg-5">
+    <form action="/upload/getRecommendations" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="exampleFormControlInput1"> User ID </label>
+            <input type="text" class="form-control" id="userId" name="userId" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1"> Number of Results </label>
+            <input type="text" class="form-control" id="numberOfResults" name="numberOfResults" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="campaign">Select Solution</label>
+            <select class="form-control" id="solutionName" name="solutionName">
+                <% solList.forEach(element=> { %>
+                    <option>
+                        <%- element.name %>
+                    </option>
+                    <% }) %>
+            </select>
+        </div>
+        <div class="form-group">
+            <input style="margin-top: 1rem;" class="btn btn-success" type="submit" value="Get Recommendations" data-toggle="modal" data-target="#smallModal">
+        </div>
+    </form>
+</div>
+
+
+<br> <br> <br> <br> <br>
+
+<div class="col-lg-6">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item ID</th>
+                <th scope="col">Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% itemList.forEach((element) => { %>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>
+                        <%= element.itemId %>
+                    </td>
+                    <td>
+                        <%= element.score %>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<br> <br> <br> <br>
