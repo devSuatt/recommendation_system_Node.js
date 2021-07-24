@@ -4,7 +4,7 @@ const fs = require('fs');
 const express = require('express');
 const Recommendation = require('../models/recommendation_model');
 const app = express();
-// const dataLocation;
+
 AWS.config.update({
     accessKeyId: process.env.AWS_ID,
     secretAccessKey: process.env.AWS_SECRET,
@@ -216,10 +216,6 @@ const createDSGroup = (req, res, next) => {
 
     }).catch(err => console.log(err));
 
-
-
-    // sleep(20000);
-    // next();
 }
 
 const usersUploadFile = (req, res, next) => {
@@ -398,7 +394,7 @@ const getRecommendations = (req, res, next) => {
         var camArn = camList[camList.length - 1].campaignArn;
         console.log(camArn);
         _getRecommendationResults(camArn, req.body.numberOfResults, req.body.userId).then((recData) => {
-            console.log(req.body.numberOfResults + ' & ' +  req.body.userId);
+            console.log(req.body.numberOfResults + ' & ' + req.body.userId);
             console.log('itemId = ' + recData.itemList[0].itemId);
             console.log('score = ' + recData.itemList[0].score);
             res.render('get_recommendations', { layout: 'layout/management_layout.ejs', solList, itemList: recData.itemList });
