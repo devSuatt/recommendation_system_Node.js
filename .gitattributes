@@ -1,3 +1,4 @@
 *.css linguist-detectable=false
+*.ejs linguist-detectable=false
 linguist-vendored
 *.ejs linguist-vendored=false
